@@ -1,0 +1,11 @@
+﻿#Requires AutoHotkey v2.0
+
+if A_Args[3] = "-noclose" {	
+	if DirExist(md) {
+		DirDelete md, 1
+	}
+} else {
+	if DirExist(c8) {
+		DirDelete c8, 1
+	}
+}

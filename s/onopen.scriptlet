@@ -1,0 +1,27 @@
+﻿#Requires AutoHotkey v2.0
+
+if DirExist(o) {
+	DirDelete o, 1
+	DirCreate o
+} else {
+	DirCreate o
+}
+	
+if not DirExist(c8) {
+	DirCreate c8
+}
+	
+if not DirExist(md) {
+	DirCreate md
+}
+	
+FileAppend "
+(
+	@ECHO OFF
+	;title Compile-in-ator (v%~1)
+	@ECHO ON
+)", md "\[main].bat"
+		
+RunWait md "\[main].bat" " " ver
+		
+FileCopy A_Args[1], md "\[CompileTemp].bat"

@@ -1,59 +1,43 @@
 ﻿#Requires AutoHotkey v2.0
-#NoTrayIcon
-#SingleInstance Force
 
-;@Ahk2Exe-Set FileVersion, 1.3.2
-;@Ahk2Exe-Set ProductVersion, 1.3.2.0
-;@Ahk2Exe-Set CompanyName, Pikakid98
-;@Ahk2Exe-ConsoleApp
+#Include s\manifest.scriptlet
 
-if DirExist(A_Temp "\Cmpl8r") {
-	DirDelete A_Temp "\Cmpl8r", 1
-}
-
-if A_Args.Length < 1
+if A_Args.Length < 2
 {
-    MsgBox "Error! Please launch this via a .compile file"
+    MsgBox "
+    (
+    	Usage: "Compile-in-ator.exe" {MODULE} "{SCRIPT}"
+    	
+    	Arguments:
+    		-compile = Initiates the compiler
+    		-text = Opens the script for editing in Turbo (by Magiblot)
+    		
+    		-noclose = Prevents deleting compile-in-ator's temp (Only useful via a frontend)
+    	
+    	Example: "Compile-in-ator.exe" -compile "C:\users\User\Downloads\Script\.compile"
+    )"
     ExitApp
 }
 
-Loop Files, A_Args[1], "F"
+#Include s\onopen.scriptlet
+
+Loop Files, A_Args[2], "F"
 SetWorkingDir A_LoopFileDir
 
-for n, param in A_Args
-{
-	if DirExist("Output") {
-		DirDelete "Output", 1
-		DirCreate "Output"
-	} else {
-		DirCreate "Output"
+if A_Args[1] = "-compile" {
+	if not FileExist(md "\" mn_compile ".exe") {
+		FileInstall c8 "\" mn_compile ".exe", md "\" mn_compile ".exe", 1
 	}
 	
-	if not DirExist(A_Temp "\Cmpl8r") {
-		DirCreate A_Temp "\Cmpl8r"
-		FileAppend "
-		(
-			@ECHO OFF
-			;title Compile-in-ator (v1.3.2)
-			@ECHO ON
-		)", A_Temp "\Cmpl8r\main.bat"
-		
-		RunWait A_Temp "\Cmpl8r\main.bat"
-		}
-		
-		if not DirExist(".Cmpl8r") {
-			DirCreate ".Cmpl8r"
-		}
-		
-		FileCopy A_Args[1], ".Cmpl8r\[CompileTemp].bat"
-		RunWait ".Cmpl8r\[CompileTemp].bat"
-		FileDelete ".Cmpl8r\[CompileTemp].bat"
-		DirDelete A_Temp "\Cmpl8r", 1
-		
-		if not (PID := ProcessExist("Compile-in-ator FE.exe")) {
-			if DirExist(".Cmpl8r") {
-					DirDelete ".Cmpl8r", 1
-				}
-			}
-	ExitApp
+	RunWait md "\" mn_compile ".exe" " " A_Args[2]
 }
+
+if A_Args[1] = "-text" {
+	if not FileExist(md "\" mn_text ".exe") {
+		FileInstall c8 "\" mn_text ".exe", md "\" mn_text ".exe", 1
+	}
+	
+	RunWait md "\" mn_text ".exe" " " A_Args[2]
+}
+
+#Include s\onclose.scriptlet

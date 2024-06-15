@@ -1,0 +1,30 @@
+﻿#Requires AutoHotkey v2.0
+
+#NoTrayIcon
+#SingleInstance Off
+
+;@Ahk2Exe-Set FileVersion, 2.0
+;@Ahk2Exe-Set ProductVersion, 2.0.0.0
+;@Ahk2Exe-Set CompanyName, Pikakid98
+
+ver := "v2.0"
+c8 := ".Cmpl8r"
+md := c8 "\Modules"
+o := "Output"
+
+;Modules
+	;name
+	mn_main := "-in-ator"
+	mn_text := "Text" mn_main
+	mn_compile := "Backend" mn_main
+
+	;Executable
+	m_text := md "\" mn_text ".exe"
+	m_compile := md "\" mn_compile ".exe"
+	
+;Turbo
+te := md "\TE.bat"
+turbo := "Turbo.exe"
+
+tmd := md "\" turbo
+tc8 := c8 "\" turbo

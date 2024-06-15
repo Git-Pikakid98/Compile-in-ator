@@ -46,6 +46,3 @@ Make sure to replace `{PATH}` with the actual path
 # Environment Variables (REQUIRED!!)
 `%AHK%`
    Should be set to your AutoHotkey path. An example `C:\Users\username\AutoHotkey` (Make sure you aren't using a subdirectory)
-\
-`%sevenz%`
-	7-Zip is an OPTIONAL tool to extract Turbo.7z which is what I tend to do. Feel free to remove this line
