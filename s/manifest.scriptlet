@@ -25,6 +25,3 @@ o := "Output"
 ;Turbo
 te := md "\TE.bat"
 turbo := "Turbo.exe"
-
-tmd := md "\" turbo
-tc8 := c8 "\" turbo

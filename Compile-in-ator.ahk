@@ -26,7 +26,7 @@ SetWorkingDir A_LoopFileDir
 
 if A_Args[1] = "-compile" {
 	if not FileExist(md "\" mn_compile ".exe") {
-		FileInstall c8 "\" mn_compile ".exe", md "\" mn_compile ".exe", 1
+		FileInstall ".Cmpl8r\Backend-in-ator.exe", ".Cmpl8r\Modules\Backend-in-ator.exe", 1
 	}
 	
 	RunWait md "\" mn_compile ".exe" " " A_Args[2]
@@ -34,7 +34,7 @@ if A_Args[1] = "-compile" {
 
 if A_Args[1] = "-text" {
 	if not FileExist(md "\" mn_text ".exe") {
-		FileInstall c8 "\" mn_text ".exe", md "\" mn_text ".exe", 1
+		FileInstall ".Cmpl8r\Text-in-ator.exe", ".Cmpl8r\Modules\Text-in-ator.exe", 1
 	}
 	
 	RunWait md "\" mn_text ".exe" " " A_Args[2]
