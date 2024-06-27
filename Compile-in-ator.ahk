@@ -21,22 +21,17 @@ if A_Args.Length < 2
 
 #Include s\onopen.scriptlet
 
+FileInstall ".Cmpl8r\Backend-in-ator.exe", ".Cmpl8r\Modules\Backend-in-ator.exe", 1
+FileInstall ".Cmpl8r\Text-in-ator.exe", ".Cmpl8r\Modules\Text-in-ator.exe", 1
+
 Loop Files, A_Args[2], "F"
 SetWorkingDir A_LoopFileDir
 
 if A_Args[1] = "-compile" {
-	if not FileExist(md "\" mn_compile ".exe") {
-		FileInstall ".Cmpl8r\Backend-in-ator.exe", ".Cmpl8r\Modules\Backend-in-ator.exe", 1
-	}
-	
 	RunWait md "\" mn_compile ".exe" " " A_Args[2]
 }
 
 if A_Args[1] = "-text" {
-	if not FileExist(md "\" mn_text ".exe") {
-		FileInstall ".Cmpl8r\Text-in-ator.exe", ".Cmpl8r\Modules\Text-in-ator.exe", 1
-	}
-	
 	RunWait md "\" mn_text ".exe" " " A_Args[2]
 }
 
